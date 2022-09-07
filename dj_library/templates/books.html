@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+
+{% block title %} Books {% endblock  %}
+
+{% block content %}
+{% load static %}
+    <div class="container-fluid mt-3">
+        <div class="d-flex flex-row-reverse">
+            <a class="btn btn-primary btn-sm m-3" href="{% url 'new_books' %}">New Book</a> 
+        </div>
+        <h1> List of Books </h1>
+        <div class="d-flex flex-row-reverse">
+            <form action="{% url 'search_books' %}" method="GET">
+                <input name="q" value="{{request.GET.q}}" placeholder="Enter Title or Authors..">
+                <input class="btn btn-secondary btn-sm m-3" type="submit" value="Search">
+            </form>
+        </div>
+        <table class="table">
+            <tr>
+                <th> Title </th>
+                <th> ISBN </th>
+                <th> Authors </th>
+                <th> Pages </th>
+                <th> Publisher </th>
+                <th> Update </th>
+                <th> Remove </th>
+                <th> Status </th>
+                <th> Action </th>
+            </tr>
+            {% for b in books %}
+                <tr>
+                    <td> <a href=" {% url 'book_detail' b.id %} "> {{b.title}} </a> </td>
+                    <td> {{b.isbn}} </td>
+                    <td> {{b.authors}} </td>
+                    <td> {{b.num_pages}} </td>
+                    <td> {{b.publisher}} </td>
+                    <td> <a class="btn btn-info btn-sm" href="{% url 'update_books' b.id %}">Update</a> </td>
+                    <td> <a class="btn btn-danger btn-sm" href="{% url 'delete_books' b.id %}">Delete</a> </td>
+                    <td> {{b.status}} </td>
+                    {% if b.availability == True %}
+                        <td> <a class="btn btn-outline-success btn-sm" href="{% url 'new_transactions' b.id %}">Issue Book</a> </td>
+                    {% else %}
+                        <td> <a class="btn btn-outline-primary btn-sm" href="{% url 'return_books' b.id %}">Return Book</a> </td>
+                    {% endif %}
+                    </tr>
+            {% endfor %}
+            <table>
+        <div class="d-flex justify-content-center">
+            {% if books.has_other_pages %}
+                <ul class="pagination">
+                {% if books.has_previous %}
+                    <li><a href="?page={{ books.previous_page_number }}{%if query%}&q={{query}}{%endif%}">Previous&nbsp;&nbsp;</a></li>
+                {% else %}
+                    <li class="disabled"><span>&laquo;</span></li>
+                {% endif %}
+
+                {% for i in books.paginator.page_range %}
+                    {% if books.number == i %}
+                    <li class="active"><span>&nbsp;&nbsp;{{ i }} <span class="sr-only">(current)</span></span></li>
+                    {% else %}
+                    <li><a href="?page={{ i }}{%if query%}&q={{query}}{%endif%}">&nbsp;&nbsp;{{ i }}</a></li>
+                    {% endif %}
+                {% endfor %}
+                
+                {% if books.has_next %}
+                    <li><a href="?page={{ books.next_page_number }}{%if query%}&q={{query}}{%endif%}">&nbsp;&nbsp;Next</a></li>
+                {% else %}
+                    <li class="disabled"><span>&raquo;</span></li>
+                {% endif %}
+                </ul>
+            {% endif %}
+        </div>
+    <div>
+{% endblock %}

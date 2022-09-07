@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %} Members {% endblock  %}
+
+{% block content %}
+{% load static %}
+    <div class="container-fluid mt-3">
+        <div class="d-flex flex-row-reverse">
+            <a class="btn btn-primary btn-sm" href="{% url 'new_members' %}">New Member</a>
+        </div>
+        <h1 class="mb-5"> Members Details </h1>
+        <table class="table">
+            <tr>
+                <th> Name </th>
+                <th> Member ID </th>
+                <th> Update </th>
+                <th> Remove </th>
+            </tr>
+            {% for m in members %}
+                <tr>
+                    <td> {{m.name}} </td>
+                    <td> {{m.memberID}} </td>
+                    <td> <a class="btn btn-info btn-sm" href="{% url 'update_members' m.id %}">Update</a> </td>
+                    <td> <a class="btn btn-danger btn-sm" href="{% url 'delete_members' m.id %}">Delete</a> </td>
+                </tr>
+            {% endfor %}
+        <table>
+    </div>
+{% endblock %}

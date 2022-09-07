@@ -1,0 +1,34 @@
+/* base page */
+.container-fluid{
+    background-color: white;
+    color: darkblue;
+    font-family:cursive;
+}
+.col-sm-10{
+    text-align:right;
+}
+.logo{
+    width:100px;
+    height:80px;
+    mix-blend-mode: multiply;
+}
+
+/* index page */
+.centered {
+    text-align: center;
+    font-family:cursive;
+    font-size: 400%;
+    color:white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* books page */
+h1{
+    text-align: center;
+}
+table{
+    color: black;
+}

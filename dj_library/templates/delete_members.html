@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %} New Books {% endblock  %}
+
+{% block content %}
+{% load static %}
+<br>
+<div class="container" style="padding-left: 350px">
+    <div class="row">
+        <div class="col-md-6 text-center">
+            <div class="card card-body">
+                <p> Are you sure you want to delete "{{item}}"? </p>
+                <form action="{% url 'delete_members' item.id %}" method="POST">
+                    {% csrf_token %}
+                    <input class="btn btn-success" type="submit" name="Confirm">
+                    <a class="btn btn-secondary" href="{% url 'members' %}"> Cancel </a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+    
+{% endblock %}

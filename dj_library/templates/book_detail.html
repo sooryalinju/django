@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+
+{% block title %} New Books {% endblock  %}
+
+{% block content %}
+{% load static %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card card-body">
+                <form action="" method="POST">
+                    {% csrf_token %}
+                        <div class="form-group row">
+                            <label for="bookID" class="col-sm-2 col-form-label">Book ID:</label>
+                            <div class="col-sm-4">
+                                <p id="bookID"> {{book.bookID}} </p>
+                            </div>
+                            <label for="title" class="col-sm-2 col-form-label">Title:</label>
+                            <div class="col-sm-4">
+                                <p id="title"> {{book.title}} </p>
+                            </div>
+                        </div>
+                    
+                        <div class="form-group row">
+                            <label for="authors" class="col-sm-2 col-form-label">Authors:</label>
+                            <div class="col-sm-4">
+                                <p id="authors"> {{book.authors}} </p>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="isbn" class="col-sm-2 col-form-label">ISBN:</label>
+                            <div class="col-sm-4">
+                                <p id="isbn"> {{book.isbn}} </p>
+                            </div>
+                            <label for="isbn13" class="col-sm-2 col-form-label">ISBN13:</label>
+                            <div class="col-sm-4">
+                                <p id="isbn13"> {{book.isbn13}} </p>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="average_rating" class="col-sm-2 col-form-label">Avg. Rating:</label>
+                            <div class="col-sm-4">
+                                <p id="average_rating"> {{book.average_rating}} </p>
+                            </div>
+                            <label for="ratings_count" class="col-sm-2 col-form-label">Rating Count:</label>
+                            <div class="col-sm-4">
+                                <p id="ratings_count"> {{book.ratings_count}} </p>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="num_pages" class="col-sm-2 col-form-label">No. of Pages:</label>
+                            <div class="col-sm-4">
+                                <p id="num_pages"> {{book.num_pages}} </p>
+                            </div>
+                            <label for="language_code" class="col-sm-2 col-form-label">Language Code:</label>
+                            <div class="col-sm-4">
+                                <p id="language_code"> {{book.language_code}} </p>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="publication_date" class="col-sm-2 col-form-label">Publication Date:</label>
+                            <div class="col-sm-4">
+                                <p id="publication_date"> {{book.publication_date}} </p>
+                            </div>
+                            <label for="publisher" class="col-sm-2 col-form-label">Publisher:</label>
+                            <div class="col-sm-4">
+                                <p id="publisher"> {{book.publisher}} </p>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="text_reviews_count" class="col-sm-2 col-form-label">Text Review Count:</label>
+                            <div class="col-sm-4">
+                                <p id="text_reviews_count"> {{book.text_reviews_count}} </p>
+                            </div>
+                            <label for="status" class="col-sm-2 col-form-label">Status:</label>
+                            <div class="col-sm-4">
+                                <p id="status"> {{book.status}} </p>
+                            </div>
+                        </div>
+
+                        <div class="form-group-row">
+                            <div>
+                                <p> {{book.transactions_ids}} </p>
+                            </div>
+                        </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div> 
+{% endblock %}

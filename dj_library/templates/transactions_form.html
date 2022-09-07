@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+
+{% block title %} Book Transactions {% endblock  %}
+
+{% block content %}
+{% load static %}
+<div class="container-fluid">
+    {% if warning == True %}
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <strong> {{ warningmsg }} </strong>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    {% endif %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card card-body">
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    <div class="form-group row">
+                        <label for="name" class="col-md-2 col-form-label">Transaction No.:</label>
+                        <div class="col-md-4">
+                            {% if action != 'issue'  %}
+                                <p id="name" style="pointer-events:none;"> {{form.name}} </p>
+                            {% else %}
+                                <p id="name"> {{form.name}} </p>
+                            {% endif %}
+                        </div>
+                        <label for="fees" class="col-md-2 col-form-label">Fees:</label>
+                        <div class="col-md-4">
+                            {% if action == 'issue'  %}
+                                <p id="fees" style="pointer-events:none;"> {{form.fees}}  </p>
+                            {% else %}
+                                <p id="fees"> {{form.fees}} </p>
+                            {% endif %}
+                        </div>
+                        
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="book_id" class="col-sm-2 col-form-label">Book Title:</label>
+                        <div class="col-sm-4">
+                            {% if action != 'issue'  %}
+                                <p id="book_id" style="pointer-events:none;"> {{form.book_id}} </p>
+                            {% else %}
+                                <p id="book_id"> {{form.book_id}} </p>
+                            {% endif %}
+                        </div>
+                        <label for="member_id" class="col-sm-2 col-form-label">Member:</label>
+                        <div class="col-sm-4">
+                            {% if action != 'issue'  %}
+                                <p id="member_id" style="pointer-events:none;"> {{form.member_id}} </p>
+                            {% else %}
+                                <p id="member_id"> {{form.member_id}} </p>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="borrowed_date" class="col-sm-2 col-form-label">Borrowed Date:</label>
+                        <div class="col-sm-4">
+                            {% if action != 'issue'  %}
+                                <p id="borrowed_date" style="pointer-events:none;"> {{form.borrowed_date}} </p>
+                            {% else %}
+                                <p id="borrowed_date"> {{form.borrowed_date}} </p>
+                            {% endif %}
+                        </div>
+                        <label for="due_date" class="col-sm-2 col-form-label">Due Date:</label>
+                        <div class="col-sm-4">
+                            {% if action != 'issue'  %}
+                                <p id="due_date" style="pointer-events:none;"> {{form.due_date}} </p>
+                            {% else %}
+                                <p id="due_date"> {{form.due_date}} </p>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <div class="col-md-12 text-center">
+                        <input class="btn btn-success btn-sm" type="submit" name="Submit">
+                        <a class="btn btn-secondary btn-sm" href="{% url 'books' %}"> Cancel </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div> 
+{% endblock %}
